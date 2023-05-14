@@ -1,6 +1,6 @@
 # Sample Kotlin DB2 project
 
-Small project using modern kotlin to serve enterprise DB2 data
+Small project using modern kotlin with Javalin to serve enterprise DB2 data
 
 ## Requirements
 
@@ -19,3 +19,23 @@ file. That will deliver to you a working DB2 instance.
 
 Use `sample` as database name, `db2inst1` as username and `change-me-please` as
 password.
+
+### NOTE
+
+Current docker image used to spin up db2 database is deprecated, so this sample
+might not work in the future untill a reasonable new public db2 image appears.
+
+
+## Running the application 
+
+Either run the main function inside `Main.kt` script or run the following gradle
+command:
+
+```bash
+./gradlew run
+```
+
+The application will try to connect into db2 running into localhost:50000
+
+## Noteworthy
+
