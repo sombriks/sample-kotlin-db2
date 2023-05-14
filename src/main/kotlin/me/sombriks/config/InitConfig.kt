@@ -20,11 +20,11 @@ object InitConfig {
     }
 }
 
-fun <T> DataSource.query(query: String, params: Array<String?>, resultSetResolver: (rs: ResultSet) -> T) {
+fun DataSource.query(query: String, params: Array<String?>, resultSetResolver: (rs: ResultSet) -> Unit) {
     this.connection.use {
         val ps = it.prepareStatement(query)
         // XXX for sample purposes only
-        for (i in params.indices) ps.setString(i + 1, params[i])
+        for (i in params.indices) ps.setString(i + 1, "%${params[i]}%")
         val rs = ps.executeQuery()
         while (rs.next()) resultSetResolver(rs)
     }

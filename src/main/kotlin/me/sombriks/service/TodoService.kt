@@ -6,7 +6,7 @@ import javax.sql.DataSource
 
 class TodoService(private val ds: DataSource) {
 
-    fun listTodos(q: String? = ""): List<Todo> {
+    fun listTodos(q: String = ""): List<Todo> {
         val todos = mutableListOf<Todo>()
         ds.query("select * from todos where description like ?", arrayOf(q)) {
             todos.add(Todo(it.getInt(1), it.getString(2)))

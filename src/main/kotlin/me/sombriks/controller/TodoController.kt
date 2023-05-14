@@ -6,7 +6,7 @@ import me.sombriks.service.TodoService
 class TodoController(private val service: TodoService) {
 
     fun listTodos(ctx: Context) {
-        ctx.json(service.listTodos(ctx.queryParam("q")))
+        ctx.json(service.listTodos(ctx.queryParam("q") ?: ""))
     }
 
     fun findTodo(ctx: Context) {
