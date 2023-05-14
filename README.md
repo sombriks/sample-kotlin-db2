@@ -1,6 +1,8 @@
 # Sample Kotlin DB2 project
 
-Small project using modern kotlin with Javalin to serve enterprise DB2 data
+Small project using modern kotlin with Javalin to serve enterprise DB2 data.
+See [this blog post](https://sombriks.com/blog/0052-ibm-db2-quick-overview/)
+for context.
 
 ## Requirements
 
@@ -8,8 +10,8 @@ Small project using modern kotlin with Javalin to serve enterprise DB2 data
 - Java 17
 - Kotlin 1.8
 - Container runtime
-  - Podman or Docker
-  - podman-compose or docker-compose
+  - Docker
+  - docker-compose
 
 ## Running db2
 
@@ -23,8 +25,7 @@ password.
 ### NOTE
 
 Current docker image used to spin up db2 database is deprecated, so this sample
-might not work in the future untill a reasonable new public db2 image appears.
-
+might not work in the future until a reasonable new public db2 image appears.
 
 ## Running the application 
 
@@ -36,6 +37,3 @@ command:
 ```
 
 The application will try to connect into db2 running into localhost:50000
-
-## Noteworthy
-
