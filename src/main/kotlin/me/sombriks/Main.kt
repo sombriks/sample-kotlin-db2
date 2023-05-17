@@ -7,20 +7,23 @@ import io.javalin.apibuilder.ApiBuilder.*
 import me.sombriks.config.InitConfig
 import me.sombriks.controller.TodoController
 import me.sombriks.service.TodoService
-import javax.sql.DataSource
+import org.jdbi.v3.core.Jdbi
 
 fun main(args: Array<String>) {
 
-    val dataSource: DataSource = HikariDataSource(
-        HikariConfig(
-            "/datasource.properties"
+    val db: Jdbi = Jdbi.create(
+        HikariDataSource(
+            HikariConfig(
+                "/datasource.properties"
+            )
         )
     )
 
-    InitConfig.initDb(dataSource)
+    InitConfig.initDb(db)
+    InitConfig.registerMappers(db)
 
-    val service: TodoService = TodoService(dataSource)
-    val controller: TodoController = TodoController(service)
+    val service = TodoService(db)
+    val controller = TodoController(service)
 
     val app = Javalin.create {
         // config

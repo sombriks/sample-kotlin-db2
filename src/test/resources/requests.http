@@ -1,0 +1,29 @@
+# sample requests
+
+### List
+GET http://localhost:7070/todos?q=more
+Content-Type: application/json
+
+### Get one
+GET http://localhost:7070/todos/2
+Content-Type: application/json
+
+### Create
+POST http://localhost:7070/todos
+Content-Type: application/json
+
+{
+  "description": "from http tests"
+}
+
+### Update
+PUT http://localhost:7070/todos/2
+Content-Type: application/json
+
+{
+  "description": "update from http tests"
+}
+
+### Delete
+DELETE http://localhost:7070/todos/3
+Content-Type: application/json

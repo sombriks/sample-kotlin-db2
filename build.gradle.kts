@@ -13,8 +13,9 @@ repositories {
 dependencies {
     implementation("io.javalin:javalin:5.5.0")
     implementation("org.slf4j:slf4j-simple:2.0.7")
-    implementation("com.zaxxer:HikariCP:3.3.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    implementation("com.zaxxer:HikariCP:3.3.0")
+    implementation("org.jdbi:jdbi3-kotlin:3.38.2")
 
     testImplementation(kotlin("test"))
 
