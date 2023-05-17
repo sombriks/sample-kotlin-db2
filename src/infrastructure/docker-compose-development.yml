@@ -14,3 +14,5 @@ services:
       DBNAME: sample
       DB2INSTANCE: db2inst1
       DB2INST1_PASSWORD: change-me-please
+  app:
+    build:
