@@ -10,7 +10,7 @@ class TodoService(private val db: Jdbi) {
         return db.withHandle<List<Todo>, Exception> {
             it.createQuery("select * from todos where description like :q")
                 .bind("q", "%$q%")
-                .mapTo(Todo::class.java)
+                .mapToBean(Todo::class.java)
                 .toList()
         }
     }
@@ -19,7 +19,7 @@ class TodoService(private val db: Jdbi) {
         return db.withHandle<Todo, Exception> {
             it.createQuery("select * from todos where id = :id")
                 .bind("id", id)
-                .mapTo(Todo::class.java)
+                .mapToBean(Todo::class.java)
                 .one()
         }
     }

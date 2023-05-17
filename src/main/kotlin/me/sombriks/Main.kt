@@ -20,7 +20,6 @@ fun main(args: Array<String>) {
     )
 
     InitConfig.initDb(db)
-    InitConfig.registerMappers(db)
 
     val service = TodoService(db)
     val controller = TodoController(service)

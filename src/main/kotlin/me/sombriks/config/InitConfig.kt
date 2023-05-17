@@ -27,10 +27,4 @@ object InitConfig {
             )
         }
     }
-
-    fun registerMappers(db: Jdbi) {
-        db.registerRowMapper(Todo::class.java, RowMapper { rs, _ ->
-            Todo(rs.getInt("id"), rs.getString("description"))
-        })
-    }
 }
