@@ -1,14 +1,17 @@
 package me.sombriks.config
 
-import me.sombriks.model.Todo
 import org.jdbi.v3.core.Jdbi
-import org.jdbi.v3.core.mapper.RowMapper
-import java.sql.ResultSet
-import javax.sql.DataSource
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 object InitConfig {
 
+    private val log by logger()
+
     fun initDb(db: Jdbi) {
+
+        log.info("preparing database")
+
         db.useHandle<Exception> {
             it.execute(
                 """
@@ -27,4 +30,12 @@ object InitConfig {
             )
         }
     }
+}
+
+
+fun <R : Any> R.logger(): Lazy<Logger> {
+    return lazy { LoggerFactory.getLogger(getClassName(this.javaClass)) }
+}
+fun <T : Any> getClassName(clazz: Class<T>): String {
+    return clazz.name.removeSuffix("\$Companion")
 }

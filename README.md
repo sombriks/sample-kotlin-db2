@@ -15,17 +15,12 @@ for context.
 
 ## Running db2
 
-Go to **src/infrastrucutre** folder and `docker-compose up` the
-*[docker-compose-development.yml](src%2Finfrastructure%2Fdocker-compose-development.yml)*
-file. That will deliver to you a working DB2 instance.
+```bash
+docker-compose -f src/infrastructure/docker-compose-development.yml up db2
+```
 
 Use `sample` as database name, `db2inst1` as username and `change-me-please` as
 password.
-
-### NOTE
-
-Current docker image used to spin up db2 database is deprecated, so this sample
-might not work in the future until a reasonable new public db2 image appears.
 
 ## Running the application 
 
@@ -37,3 +32,38 @@ command:
 ```
 
 The application will try to connect into db2 running into localhost:50000
+
+## Using complete compose
+
+It will build the application with a special environment flag so the database
+configurations will try to find it inside the compose context.
+See `src/main/resources` for more details.
+
+## Noteworthy
+
+Although the container-related files are NOT in project root (they are in src/infrastructure),
+the project root folder keeps acting as container context.
+
+Therefore, to build the app image:
+
+```bash
+./gradlew build
+docker build -t sample:latest -f src/infrastructure/Dcokerfile .
+```
+
+Or, to compose up everything:
+
+
+```bash
+./gradlew build
+docker build -t sample:latest -f src/infrastructure/Dcokerfile .
+```
+
+On one hand, we clean a little the project root, on the other side it demands
+a little more tricky docker-compose file.
+
+## Next steps
+
+- sample Javalin tests
+- integrate image building in gradle build itself; use built image on compose
+- see if IDE configurations can provide hot-reload for Javalin
