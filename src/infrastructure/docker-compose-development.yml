@@ -15,4 +15,11 @@ services:
       DB2INSTANCE: db2inst1
       DB2INST1_PASSWORD: change-me-please
   app:
-    build:
+    build: .
+    ports:
+      - "7070:7070"
+    expose:
+      - 7070
+    depends_on:
+      - db2
+
