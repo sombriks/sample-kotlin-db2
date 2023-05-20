@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
+import io.javalin.http.HttpStatus
 import me.sombriks.config.InitConfig
 import me.sombriks.config.logger
 import me.sombriks.controller.TodoController
@@ -47,6 +48,7 @@ class Main {
                     delete(controller::delTodo)
                 }
             }
+            get("/check") { it.status(HttpStatus.OK)}
         }
         return app
     }
